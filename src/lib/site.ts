@@ -122,6 +122,7 @@ export const media = {
   },
   web: {
     cistWebsite: "/media/web/cist-website.png",
+    bistWebsite: "/media/web/bist-website.jpg",
   },
   print: {
     poster: "/media/print/graduation-2026-poster.png",
