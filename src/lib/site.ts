@@ -1,5 +1,4 @@
 // Contact details and media used across the site. Text lives in src/lib/i18n.
-// Replace the social links with real values.
 export const site = {
   // Public address of this portfolio (also printed on the CV and the qualification PDF).
   url: "https://yassirelhajjami.vercel.app",
@@ -12,9 +11,8 @@ export const site = {
   cvUrl: "/cv.pdf",
   cvFileName: "Yassir-El-Hajjami-CV.pdf",
   socials: [
-    { label: "LinkedIn", href: "https://www.linkedin.com/" },
-    { label: "Instagram", href: "https://www.instagram.com/" },
-    { label: "GitHub", href: "https://github.com/" },
+    { label: "Instagram", href: "https://www.instagram.com/yassir_el_hajjami/" },
+    { label: "GitHub", href: "https://github.com/yassirelhajjami" },
   ],
 }
 
