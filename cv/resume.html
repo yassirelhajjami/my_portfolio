@@ -1,0 +1,642 @@
+<!doctype html>
+<!-- Source for public/cv.pdf (page 1 English, page 2 Arabic). Edit this file, then run `npm run cv` to rebuild the PDF. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Yassir El Hajjami — CV</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      :root {
+        --ink: #18181b;
+        --muted: #52525b;
+        --line: #e4e4e7;
+        --brand: #4f46e5;
+        --brand-2: #0e7490;
+        --side: #0f0f1a;
+        --side-ink: #e4e4e7;
+        --side-muted: #a1a1aa;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 210mm;
+      }
+
+      body {
+        font-family: "Times New Roman", Times, serif;
+        color: var(--ink);
+        font-size: 9.6pt;
+        line-height: 1.5;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .page {
+        display: grid;
+        grid-template-columns: 68mm 1fr;
+        height: 297mm;
+        overflow: hidden;
+        break-after: page;
+      }
+
+      /* Sidebar */
+      aside {
+        background: var(--side);
+        color: var(--side-ink);
+        padding: 14mm 8mm 12mm;
+        position: relative;
+        overflow: hidden;
+      }
+
+      aside::before {
+        content: "";
+        position: absolute;
+        top: -40mm;
+        inset-inline-start: -30mm;
+        width: 120mm;
+        height: 90mm;
+        background: radial-gradient(closest-side, rgba(99, 102, 241, 0.35), transparent);
+      }
+
+      aside > * {
+        position: relative;
+      }
+
+      .photo {
+        width: 40mm;
+        height: 40mm;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: 50% 28%;
+        display: block;
+        margin: 0 auto 8mm;
+        border: 1.2mm solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 0 0.4mm rgba(129, 140, 248, 0.7);
+      }
+
+      aside h3 {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 7.4pt;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #a5b4fc;
+        margin: 7mm 0 2.6mm;
+        display: flex;
+        align-items: center;
+        gap: 2mm;
+      }
+
+      aside h3::after {
+        content: "";
+        flex: 1;
+        height: 0.25mm;
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .contact li {
+        list-style: none;
+        margin-bottom: 1.8mm;
+        color: var(--side-ink);
+        word-break: break-word;
+      }
+
+      .contact span {
+        display: block;
+        font-size: 7pt;
+        color: var(--side-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .skills p {
+        font-size: 8pt;
+        font-weight: 600;
+        color: #fff;
+        margin: 2.4mm 0 1.2mm;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.2mm;
+      }
+
+      .tags li {
+        list-style: none;
+        font-size: 7.4pt;
+        padding: 0.5mm 2mm;
+        border-radius: 99px;
+        background: rgba(255, 255, 255, 0.07);
+        border: 0.25mm solid rgba(255, 255, 255, 0.1);
+        color: var(--side-ink);
+      }
+
+      .plain li {
+        list-style: none;
+        margin-bottom: 1.2mm;
+        color: var(--side-ink);
+      }
+
+      .plain small {
+        color: var(--side-muted);
+        display: block;
+        font-size: 7.6pt;
+      }
+
+      /* Main column */
+      main {
+        padding: 14mm 12mm 12mm 11mm;
+      }
+
+      .name {
+        font-size: 25pt;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+      }
+
+      .name em {
+        font-style: normal;
+        background: linear-gradient(100deg, #4338ca, #6366f1 50%, #0e7490);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .role {
+        margin-top: 2mm;
+        font-size: 10.4pt;
+        font-weight: 500;
+        color: var(--muted);
+      }
+
+      .tagline {
+        margin-top: 0.8mm;
+        font-size: 9pt;
+        color: var(--brand-2);
+      }
+
+      .profile {
+        margin-top: 5mm;
+        padding: 3.6mm 4mm;
+        border-inline-start: 0.8mm solid var(--brand);
+        background: #f5f5ff;
+        border-start-end-radius: 2mm;
+        border-end-end-radius: 2mm;
+        color: #3f3f46;
+      }
+
+      main h2 {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 8pt;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--brand);
+        margin: 6.5mm 0 3mm;
+        display: flex;
+        align-items: center;
+        gap: 2.5mm;
+      }
+
+      main h2::after {
+        content: "";
+        flex: 1;
+        height: 0.25mm;
+        background: var(--line);
+      }
+
+      .job {
+        margin-bottom: 4.2mm;
+        break-inside: avoid;
+      }
+
+      .job header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 4mm;
+      }
+
+      .job h4 {
+        font-size: 10.6pt;
+        font-weight: 600;
+      }
+
+      .job .where {
+        font-size: 8.6pt;
+        color: var(--brand-2);
+        font-weight: 500;
+      }
+
+      .job ul {
+        margin: 1.4mm 0 0;
+        margin-inline-start: 4mm;
+      }
+
+      .job li {
+        margin-bottom: 0.8mm;
+        color: #3f3f46;
+      }
+
+      .job li::marker {
+        color: var(--brand);
+      }
+
+      .rows {
+        list-style: none;
+      }
+
+      .rows li {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 4mm;
+        padding: 1.6mm 0;
+        border-bottom: 0.25mm solid var(--line);
+        break-inside: avoid;
+      }
+
+      .rows li:last-child {
+        border-bottom: 0;
+      }
+
+      .rows b {
+        display: block;
+        font-weight: 600;
+        font-size: 9.8pt;
+      }
+
+      .rows span {
+        display: block;
+        font-size: 8.4pt;
+        color: var(--brand-2);
+      }
+
+      .rows time {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 8.2pt;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      .portfolio {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        column-gap: 3mm;
+        align-items: baseline;
+        margin-top: 4mm;
+        padding: 2.6mm 4mm;
+        border: 0.3mm solid #c7d2fe;
+        border-radius: 2mm;
+        background: linear-gradient(100deg, #eef2ff, #ecfeff);
+      }
+
+      .portfolio-label {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 7.2pt;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--brand);
+      }
+
+      .portfolio b {
+        font-size: 10.5pt;
+        color: var(--ink);
+      }
+
+      .portfolio-text {
+        grid-column: 2;
+        font-size: 8.4pt;
+        color: var(--muted);
+      }
+
+      .job .kind {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 7.6pt;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      /* Arabic page: Arabic font, no letter-spacing (it breaks joined letters), no uppercase */
+      .page[dir="rtl"] {
+        font-family: "Times New Roman", Times, serif;
+        line-height: 1.6;
+      }
+
+      .page[dir="rtl"] * {
+        letter-spacing: 0 !important;
+        text-transform: none !important;
+      }
+
+      .page[dir="rtl"] h2,
+      .page[dir="rtl"] h3,
+      .page[dir="rtl"] .portfolio-label,
+      .page[dir="rtl"] .job .kind {
+        font-family: "Times New Roman", Times, serif;
+        font-weight: 600;
+      }
+
+      /* Latin text (emails, links, course codes) inside the Arabic page */
+      .ltr {
+        direction: ltr;
+        unicode-bidi: isolate;
+      }
+
+      .rows span .ltr {
+        display: inline;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <aside>
+        <img class="photo" src="portrait.jpg" alt="Yassir El Hajjami" />
+
+        <h3>Contact</h3>
+        <ul class="contact">
+          <li><span>Email</span><a href="mailto:yassir.el.hajjami@hotmail.com">yassir.el.hajjami@hotmail.com</a></li>
+          <li><span>Phone</span><a href="tel:+212603843667">+212 6 03 84 36 67</a></li>
+          <li><span>Location</span>Tangier, Morocco</li>
+          <li><span>Portfolio</span><a href="https://yassirelhajjami.vercel.app">yassirelhajjami.vercel.app</a></li>
+        </ul>
+
+        <h3>Skills</h3>
+        <div class="skills">
+          <p>English teaching</p>
+          <ul class="tags">
+            <li>TEFL methods</li>
+            <li>Placement testing</li>
+            <li>Speaking &amp; pronunciation</li>
+            <li>Business English</li>
+            <li>Differentiated lessons</li>
+          </ul>
+          <p>EdTech &amp; AI</p>
+          <ul class="tags">
+            <li>Interactive web lessons</li>
+            <li>AI in lesson design</li>
+            <li>Gamified learning</li>
+            <li>Next.js &amp; Vercel</li>
+            <li>Smart boards</li>
+          </ul>
+          <p>Practical STEM</p>
+          <ul class="tags">
+            <li>Ontario CS curriculum</li>
+            <li>Java</li>
+            <li>Arduino &amp; sensors</li>
+          </ul>
+          <p>Digital media</p>
+          <ul class="tags">
+            <li>Video &amp; reels</li>
+            <li>Print &amp; signage design</li>
+          </ul>
+        </div>
+
+        <h3>Languages</h3>
+        <ul class="plain">
+          <li>English</li>
+          <li>Arabic</li>
+          <li>French<small>Intermediate</small></li>
+        </ul>
+      </aside>
+
+      <main>
+        <h1 class="name">Yassir <em>El Hajjami</em></h1>
+        <p class="role">English Language Educator &amp; EdTech Specialist</p>
+        <p class="tagline">Teaching English, Computer Science and Digital Media with AI Integration</p>
+
+        <a class="portfolio" href="https://yassirelhajjami.vercel.app">
+          <span class="portfolio-label">Online portfolio</span>
+          <b>yassirelhajjami.vercel.app</b>
+          <span class="portfolio-text">Live lessons, certificates and class videos</span>
+        </a>
+
+        <p class="profile">
+          B.A. in English Studies (Linguistics) and 120-hour TEFL certified. I teach kids and adults in class and
+          online, including Spanish-speaking learners, and build interactive lessons for each group's level. At the
+          Canadian International School of Tangier I teach Computer Science in English to 15+ nationalities.
+        </p>
+
+        <h2>Experience</h2>
+
+        <section class="job">
+          <header>
+            <h4>English Language Teacher</h4>
+            <span class="kind">Kids · Adults · Business</span>
+          </header>
+          <p class="where">Language centers &amp; online</p>
+          <ul>
+            <li>General and business English, in class and online, for all ages.</li>
+            <li>Place learners with a 4-skills diagnostic test; adapt lessons to their level.</li>
+            <li>Built 12 interactive web lessons for kids and adults.</li>
+          </ul>
+        </section>
+
+        <section class="job">
+          <header>
+            <h4>Computer Science &amp; Robotics Teacher</h4>
+            <span class="kind">Ontario curriculum</span>
+          </header>
+          <p class="where">Canadian International School of Tangier</p>
+          <ul>
+            <li>Teach in English to students of 15+ nationalities, Grades 1–12.</li>
+            <li>Grades 1–8: built <b>CIST CodeQuest</b>, a gamified coding and Arduino platform.</li>
+            <li>Grades 9–12: ICS4U, ICS3U, ICD2O, TAS1O via Ontario Nexus Academy.</li>
+          </ul>
+        </section>
+
+        <section class="job">
+          <header>
+            <h4>Head of IT &amp; Marketing Manager</h4>
+          </header>
+          <p class="where">Canadian International School of Tangier</p>
+          <ul>
+            <li>Lead school IT; designed and launched the school website, <b>cist.ma</b>.</li>
+            <li>Produce videos, reels and ads; design posters, banners and signage.</li>
+          </ul>
+        </section>
+
+        <h2>Education</h2>
+        <ul class="rows">
+          <li>
+            <div><b>B.A. in English Studies (Linguistics)</b><span>Abdelmalek Essaâdi University, Tétouan</span></div>
+            <time>2025</time>
+          </li>
+        </ul>
+
+        <h2>Certifications</h2>
+        <ul class="rows">
+          <li>
+            <div><b>120-Hour TESOL / TEFL Certificate</b><span>World TESOL Academy · accredited by ACCREDITAT &amp; CPD (UK)</span></div>
+            <time>2024</time>
+          </li>
+          <li>
+            <div><b>Ontario Teaching Professional Development — Computer Science</b><span>Ontario Nexus Academy · 10 sessions</span></div>
+            <time>2026</time>
+          </li>
+          <li>
+            <div><b>Fundamentals of Digital Marketing</b><span>Google Digital Garage</span></div>
+            <time>2021</time>
+          </li>
+          <li>
+            <div><b>Information Technology Training (9 months)</b><span>Institut Ibn Batouta, Tangier</span></div>
+            <time>2017</time>
+          </li>
+        </ul>
+      </main>
+    </div>
+
+    <div class="page" dir="rtl" lang="ar">
+      <aside>
+        <img class="photo" src="portrait.jpg" alt="ياسر الهجامي" />
+
+        <h3>التواصل</h3>
+        <ul class="contact">
+          <li><span>البريد الإلكتروني</span><a class="ltr" href="mailto:yassir.el.hajjami@hotmail.com">yassir.el.hajjami@hotmail.com</a></li>
+          <li><span>الهاتف</span><a class="ltr" href="tel:+212603843667">+212 6 03 84 36 67</a></li>
+          <li><span>المدينة</span>طنجة، المغرب</li>
+          <li><span>الموقع الشخصي</span><a class="ltr" href="https://yassirelhajjami.vercel.app">yassirelhajjami.vercel.app</a></li>
+        </ul>
+
+        <h3>المهارات</h3>
+        <div class="skills">
+          <p>تدريس الإنجليزية</p>
+          <ul class="tags">
+            <li>منهجية TEFL</li>
+            <li>اختبارات تحديد المستوى</li>
+            <li>المحادثة والنطق</li>
+            <li>إنجليزية الأعمال</li>
+            <li>دروس حسب المستوى</li>
+          </ul>
+          <p>التكنولوجيا التعليمية والذكاء الاصطناعي</p>
+          <ul class="tags">
+            <li>دروس ويب تفاعلية</li>
+            <li>الذكاء الاصطناعي في إعداد الدروس</li>
+            <li>التعلّم باللعب</li>
+            <li><span class="ltr">Next.js &amp; Vercel</span></li>
+            <li>السبورة الذكية</li>
+          </ul>
+          <p>العلوم التطبيقية (STEM)</p>
+          <ul class="tags">
+            <li>منهج أونتاريو لعلوم الحاسوب</li>
+            <li>Java</li>
+            <li>أردوينو والحسّاسات</li>
+          </ul>
+          <p>الإعلام الرقمي</p>
+          <ul class="tags">
+            <li>الفيديو والريلز</li>
+            <li>تصميم المطبوعات واللافتات</li>
+          </ul>
+        </div>
+
+        <h3>اللغات</h3>
+        <ul class="plain">
+          <li>الإنجليزية</li>
+          <li>العربية</li>
+          <li>الفرنسية<small>مستوى متوسط</small></li>
+        </ul>
+      </aside>
+
+      <main>
+        <h1 class="name">ياسر <em>الهجامي</em></h1>
+        <p class="role">أستاذ اللغة الإنجليزية ومتخصص في التكنولوجيا التعليمية</p>
+        <p class="tagline">تدريس الإنجليزية وعلوم الحاسوب والإعلام الرقمي مع دمج الذكاء الاصطناعي</p>
+
+        <a class="portfolio" href="https://yassirelhajjami.vercel.app">
+          <span class="portfolio-label">الموقع الشخصي</span>
+          <b class="ltr">yassirelhajjami.vercel.app</b>
+          <span class="portfolio-text">دروس تفاعلية، شهادات وفيديوهات من القسم</span>
+        </a>
+
+        <p class="profile">
+          حاصل على إجازة في الدراسات الإنجليزية (لسانيات) وشهادة TEFL ‏(120 ساعة). أُدرّس الأطفال والكبار حضوريًا
+          وعن بُعد، ومنهم متعلمون ناطقون بالإسبانية، وأبني دروسًا تفاعلية تناسب مستوى كل مجموعة. وفي المدرسة الكندية
+          الدولية بطنجة أُدرّس علوم الحاسوب باللغة الإنجليزية لتلاميذ من أكثر من 15 جنسية.
+        </p>
+
+        <h2>الخبرة المهنية</h2>
+
+        <section class="job">
+          <header>
+            <h4>أستاذ اللغة الإنجليزية</h4>
+            <span class="kind">أطفال · كبار · أعمال</span>
+          </header>
+          <p class="where">مراكز اللغات والتدريس عن بُعد</p>
+          <ul>
+            <li>الإنجليزية العامة وإنجليزية الأعمال، حضوريًا وعن بُعد، لكل الأعمار.</li>
+            <li>تحديد مستوى المتعلمين باختبار تشخيصي للمهارات الأربع، وتكييف الدروس حسب المستوى.</li>
+            <li>بناء 12 درسًا تفاعليًا على الويب للأطفال والكبار.</li>
+          </ul>
+        </section>
+
+        <section class="job">
+          <header>
+            <h4>أستاذ علوم الحاسوب والروبوتات</h4>
+            <span class="kind">منهج أونتاريو</span>
+          </header>
+          <p class="where">المدرسة الكندية الدولية بطنجة</p>
+          <ul>
+            <li>التدريس باللغة الإنجليزية لتلاميذ من أكثر من 15 جنسية، من الصف 1 إلى 12.</li>
+            <li>الصفوف 1–8: بناء منصة <b>CIST CodeQuest</b> للبرمجة والأردوينو على شكل لعبة.</li>
+            <li>الصفوف 9–12: <span class="ltr">ICS4U · ICS3U · ICD2O · TAS1O</span> عبر <span class="ltr">Ontario Nexus Academy</span>.</li>
+          </ul>
+        </section>
+
+        <section class="job">
+          <header>
+            <h4>مسؤول تكنولوجيا المعلومات والتسويق</h4>
+          </header>
+          <p class="where">المدرسة الكندية الدولية بطنجة</p>
+          <ul>
+            <li>إدارة تكنولوجيا المعلومات بالمدرسة، وتصميم وإطلاق موقعها الرسمي <b class="ltr">cist.ma</b>.</li>
+            <li>إنتاج الفيديوهات والريلز والإعلانات، وتصميم الملصقات واللافتات.</li>
+          </ul>
+        </section>
+
+        <h2>التعليم</h2>
+        <ul class="rows">
+          <li>
+            <div><b>إجازة في الدراسات الإنجليزية (لسانيات)</b><span>جامعة عبد المالك السعدي، تطوان</span></div>
+            <time>2025</time>
+          </li>
+        </ul>
+
+        <h2>الشهادات</h2>
+        <ul class="rows">
+          <li>
+            <div><b>شهادة TESOL / TEFL ‏(120 ساعة)</b><span><span class="ltr">World TESOL Academy</span> · معتمدة من ACCREDITAT و CPD (المملكة المتحدة)</span></div>
+            <time>2024</time>
+          </li>
+          <li>
+            <div><b>تكوين مهني في التدريس بمنهج أونتاريو — علوم الحاسوب</b><span>10 حصص · <span class="ltr">Ontario Nexus Academy</span></span></div>
+            <time>2026</time>
+          </li>
+          <li>
+            <div><b>أساسيات التسويق الرقمي</b><span>Google Digital Garage</span></div>
+            <time>2021</time>
+          </li>
+          <li>
+            <div><b>تكوين في المعلوميات (9 أشهر)</b><span>معهد ابن بطوطة، طنجة</span></div>
+            <time>2017</time>
+          </li>
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>

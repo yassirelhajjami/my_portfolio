@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# original, unoptimized media (kept locally, not published)
+/media-originals
+
+# personal Claude Code settings
+.claude/settings.local.json
