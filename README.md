@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Yassir El Hajjami — Teaching Portfolio
 
-## Getting Started
+Portfolio site of **Mr. Yassir El Hajjami**, English Language Educator & EdTech Specialist.
+Teaching English, Computer Science and Digital Media with AI integration.
 
-First, run the development server:
+**Live site:** [yassirelhajjami.vercel.app](https://yassirelhajjami.vercel.app) · available in English and Arabic
+
+## What's on the site
+
+- **Certificates:** B.A. in English Studies (Linguistics), 120-hour TESOL/TEFL, Ontario teaching PD, and more. Each one opens the original scan.
+- **Interactive lessons:** an English placement test plus live lessons for kids, adults and business English, and Computer Science lessons for Grades 9–12.
+- **EdTech & STEM:** CIST CodeQuest, a gamified coding and Arduino platform I built for Grades 1–8.
+- **Design work:** school videos and reels, print design, and campus wall and sign designs.
+- **Downloads:** a two-page CV (English + Arabic) and a full qualification portfolio PDF.
+
+## Built with
+
+Next.js (App Router) · TypeScript · Tailwind CSS · shadcn/ui · Framer Motion · GSAP
+
+## Run it locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Editing content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| What | Where |
+| --- | --- |
+| Text (English / Arabic) | `src/lib/i18n/en.ts`, `src/lib/i18n/ar.ts` |
+| Contact details, lessons, certificates, media | `src/lib/site.ts` |
+| CV | `cv/resume.html`, then `npm run cv` to rebuild `public/cv.pdf` |
+| Qualification portfolio PDF | `npm run portfolio` (built from the certificates in `src/lib/site.ts`) |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Both PDF scripts use your installed Chrome or Edge. Set `CHROME_PATH` if it isn't found.
 
-## Learn More
+## Privacy
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Certificate copies have personal ID numbers covered, and student names are blurred in screenshots.
+Original files are kept locally in `media-originals/`, which is not part of this repository.
