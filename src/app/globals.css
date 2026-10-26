@@ -267,9 +267,54 @@ html:lang(ar) * {
   animation: float 14s ease-in-out infinite;
 }
 
+/* Hero text intro. Pure CSS, so the text appears with the first paint instead of waiting
+   for JavaScript (faster Largest Contentful Paint). Set the start time with --d. */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--rise, 16px));
+    filter: blur(var(--blur, 0px));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+.hero-in {
+  animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s) both;
+}
+
+.hero-word {
+  --rise: 70%;
+  --blur: 8px;
+  animation-duration: 0.85s;
+}
+
+/* Portrait reveal: grows out of a smaller rounded frame. */
+@keyframes hero-photo {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+    clip-path: inset(14% 14% 14% 14% round 2rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0% 0% 0% 0% round 2rem);
+  }
+}
+
+.hero-photo {
+  animation: hero-photo 1.3s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .glow-border::before,
-  .animate-float {
+  .animate-float,
+  .hero-in,
+  .hero-photo {
     animation: none;
   }
 }

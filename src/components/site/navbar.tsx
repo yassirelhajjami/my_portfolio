@@ -31,7 +31,7 @@ export function Navbar() {
         )}
       >
         <a href="#top" className="flex min-w-0 items-center gap-2.5" aria-label={t.nav.backToTop}>
-          <Logo priority />
+          <Logo preload />
           <span className="hidden truncate text-sm font-medium text-foreground/90 sm:inline">{t.name}</span>
         </a>
 

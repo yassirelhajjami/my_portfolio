@@ -14,15 +14,18 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
+// Only the main font is preloaded; the mono and Arabic fonts download when a page actually uses them.
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  preload: false,
 });
 
 const plexArabic = IBM_Plex_Sans_Arabic({
   variable: "--font-arabic",
   subsets: ["arabic"],
   weight: ["400", "500", "600", "700"],
+  preload: false,
 });
 
 export function generateStaticParams() {

@@ -7,6 +7,7 @@ import { buttonVariants } from "@/components/ui/button"
 import { useI18n } from "@/components/i18n-provider"
 import { cn } from "@/lib/utils"
 import { instagram } from "@/lib/site"
+import { useNearViewport } from "@/hooks/use-near-viewport"
 
 declare global {
   interface Window {
@@ -54,18 +55,26 @@ function ReelEmbed({ id, fallback }: { id: string; fallback: string }) {
 export function InstagramReels() {
   const { t } = useI18n()
   const r = t.creative.reels
+  // Instagram's script and iframes are heavy, so load them only when the reels are near the screen.
+  const [ref, near] = useNearViewport<HTMLDivElement>("600px")
 
   return (
-    <div>
-      <Script
-        src="https://www.instagram.com/embed.js"
-        strategy="lazyOnload"
-        onLoad={() => window.instgrm?.Embeds.process()}
-      />
+    <div ref={ref}>
+      {near && (
+        <Script
+          src="https://www.instagram.com/embed.js"
+          strategy="lazyOnload"
+          onLoad={() => window.instgrm?.Embeds.process()}
+        />
+      )}
       <div className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-4 sm:-mx-6 sm:scroll-px-6 sm:px-6">
         {instagram.reels.map((id) => (
           <div key={id} className="w-[min(328px,calc(100vw-2rem))] shrink-0 snap-start">
-            <ReelEmbed id={id} fallback={r.fallback} />
+            {near ? (
+              <ReelEmbed id={id} fallback={r.fallback} />
+            ) : (
+              <div className="min-h-[520px] rounded-xl bg-muted/70" />
+            )}
           </div>
         ))}
       </div>

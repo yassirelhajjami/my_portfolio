@@ -10,6 +10,7 @@ import { Chip, Section, SectionHeading } from "@/components/site/section"
 import { Gallery } from "@/components/site/gallery"
 import { Reveal } from "@/components/site/reveal"
 import { SpotlightCard } from "@/components/site/spotlight-card"
+import { LazyVideo } from "@/components/site/lazy-video"
 
 const courses = ["ICS4U", "ICS3U", "ICD2O", "TAS1O"]
 const highlightIcons = [CircuitBoard, Radar, Cog, Box, Gamepad2]
@@ -150,15 +151,10 @@ export function Teaching() {
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.5, delay: 0.24 }}
         >
-          <video
+          <LazyVideo
             src={media.teaching.handVideo}
             poster={media.teaching.handPoster}
-            controls
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            className="aspect-[3/4] w-full rounded-xl border border-line bg-black object-cover"
+            className="aspect-[3/4] w-full rounded-xl border border-line object-cover"
           />
           <figcaption className="mt-3 text-sm leading-relaxed text-foreground/80">{tt.video}</figcaption>
         </motion.figure>

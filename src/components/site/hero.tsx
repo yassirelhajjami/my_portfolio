@@ -17,40 +17,18 @@ export function Hero() {
   const { t } = useI18n()
   const root = useRef<HTMLElement>(null)
 
-  // Hero elements start with `invisible` so nothing flashes before the timeline runs.
+  // The text and portrait animate with CSS (.hero-in, .hero-photo) so they show without
+  // waiting for JavaScript. GSAP pops in the floating chips, which start `invisible`.
   useGSAP(
     () => {
       const mm = gsap.matchMedia()
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap
-          .timeline({ defaults: { ease: "power3.out" } })
-          .fromTo("[data-hero='badge']", { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.6 })
-          .fromTo(
-            "[data-hero='photo']",
-            { autoAlpha: 0, scale: 0.92, clipPath: "inset(14% 14% 14% 14% round 2rem)" },
-            { autoAlpha: 1, scale: 1, clipPath: "inset(0% 0% 0% 0% round 2rem)", duration: 1.4, ease: "expo.out" },
-            0.2
-          )
-          .fromTo(
-            "[data-hero='chip']",
-            { autoAlpha: 0, scale: 0.8, y: 12 },
-            { autoAlpha: 1, scale: 1, y: 0, duration: 0.6, stagger: 0.15, ease: "back.out(1.7)" },
-            1.1
-          )
-          .fromTo(
-            "[data-hero='word']",
-            { autoAlpha: 0, yPercent: 70, filter: "blur(10px)" },
-            { autoAlpha: 1, yPercent: 0, filter: "blur(0px)", duration: 0.9, stagger: 0.06 },
-            0.3
-          )
-          .fromTo("[data-hero='sub']", { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.7 }, "-=0.5")
-          .fromTo(
-            "[data-hero='cta']",
-            { autoAlpha: 0, y: 12 },
-            { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.08 },
-            "-=0.4"
-          )
+        gsap.fromTo(
+          "[data-hero='chip']",
+          { autoAlpha: 0, scale: 0.8, y: 12 },
+          { autoAlpha: 1, scale: 1, y: 0, duration: 0.6, stagger: 0.15, ease: "back.out(1.7)", delay: 0.6 }
+        )
       })
 
       mm.add("(prefers-reduced-motion: reduce)", () => {
@@ -76,8 +54,7 @@ export function Hero() {
       <div className="mx-auto grid w-full max-w-6xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-[1.25fr_0.75fr] lg:gap-12">
         <div className="flex flex-col items-center text-center lg:items-start lg:text-start">
           <div
-            data-hero="badge"
-            className="glow-border invisible inline-flex items-center gap-2 rounded-full bg-background/80 px-4 py-1.5 text-xs text-foreground/80 sm:text-sm"
+            className="glow-border hero-in inline-flex items-center gap-2 rounded-full bg-background/80 px-4 py-1.5 text-xs text-foreground/80 sm:text-sm"
           >
             <span className="text-brand-2">✦</span>
             <span className="text-balance">{t.hero.badge}</span>
@@ -86,7 +63,10 @@ export function Hero() {
           <h1 className="mt-8 text-[2.1rem] leading-[1.1] font-semibold tracking-tight text-balance text-foreground sm:text-5xl lg:text-[3.4rem] rtl:leading-[1.35]">
             {t.hero.headline.map((word, i) => (
               <span key={i} className="inline-block overflow-hidden pb-2 align-bottom">
-                <span data-hero="word" className={cn("invisible inline-block", word.accent && "text-gradient")}>
+                <span
+                  className={cn("hero-in hero-word inline-block", word.accent && "text-gradient")}
+                  style={{ "--d": `${0.15 + i * 0.05}s` } as React.CSSProperties}
+                >
                   {word.text}
                 </span>
                 {i < t.hero.headline.length - 1 && " "}
@@ -94,35 +74,38 @@ export function Hero() {
             ))}
           </h1>
 
-          <p data-hero="sub" className="invisible mt-5 max-w-2xl text-lg font-medium text-pretty text-foreground/85 md:text-xl">
+          <p
+            className="hero-in mt-5 max-w-2xl text-lg font-medium text-pretty text-foreground/85 md:text-xl"
+            style={{ "--d": "0.45s" } as React.CSSProperties}
+          >
             {t.hero.tagline}
           </p>
           <p
-            data-hero="sub"
-            className="invisible mt-4 max-w-2xl text-base leading-relaxed text-pretty text-muted-foreground md:text-lg"
+            style={{ "--d": "0.55s" } as React.CSSProperties}
+            className="hero-in mt-4 max-w-2xl text-base leading-relaxed text-pretty text-muted-foreground md:text-lg"
           >
             {t.hero.sub}
           </p>
 
           <div className="mt-10 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row lg:justify-start">
             <a
-              data-hero="cta"
               href="#lessons"
+              style={{ "--d": "0.65s" } as React.CSSProperties}
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "invisible h-12 w-full rounded-full px-6 text-[15px] shadow-[0_0_40px_-8px] shadow-indigo-500/60 sm:w-auto"
+                "hero-in h-12 w-full rounded-full px-6 text-[15px] shadow-[0_0_40px_-8px] shadow-indigo-500/60 sm:w-auto"
               )}
             >
               {t.hero.ctaPrimary}
               <ArrowRight data-icon="inline-end" className="rtl:-scale-x-100" />
             </a>
             <a
-              data-hero="cta"
               href={site.cvUrl}
               download={site.cvFileName}
+              style={{ "--d": "0.73s" } as React.CSSProperties}
               className={cn(
                 buttonVariants({ variant: "outline", size: "lg" }),
-                "invisible h-12 w-full rounded-full border-line-strong bg-subtle px-6 text-[15px] backdrop-blur sm:w-auto"
+                "hero-in h-12 w-full rounded-full border-line-strong bg-subtle px-6 text-[15px] backdrop-blur sm:w-auto"
               )}
             >
               <Download data-icon="inline-start" />
@@ -147,15 +130,14 @@ function HeroPortrait() {
         className="absolute -inset-10 -z-10 rounded-full bg-gradient-to-tr from-indigo-500/30 via-transparent to-cyan-400/25 blur-3xl"
       />
       <div
-        data-hero="photo"
-        className="invisible rounded-[2rem] bg-gradient-to-br from-indigo-400/70 via-foreground/10 to-cyan-400/70 p-px shadow-2xl shadow-indigo-500/20"
+        className="hero-photo rounded-[2rem] bg-gradient-to-br from-indigo-400/70 via-foreground/10 to-cyan-400/70 p-px shadow-2xl shadow-indigo-500/20"
       >
         <div className="relative aspect-[4/5] overflow-hidden rounded-[calc(2rem-1px)] bg-muted">
           <Image
             src={site.portrait}
             alt={t.nameWithTitle}
             fill
-            priority
+            preload
             sizes="(min-width: 1024px) 420px, 90vw"
             className="object-cover object-[50%_30%]"
           />

@@ -32,6 +32,7 @@ npm run dev        # http://localhost:3000
 | Contact details, lessons, certificates, media | `src/lib/site.ts` |
 | CV | `cv/resume.html`, then `npm run cv` to rebuild `public/cv.pdf` |
 | Qualification portfolio PDF | `npm run portfolio` (built from the certificates in `src/lib/site.ts`) |
+| New photos | Put JPG/PNG files in `public/`, run `npm run images` to convert them to WebP, then use the `.webp` path in `src/lib/site.ts` |
 
 Both PDF scripts use your installed Chrome or Edge. Set `CHROME_PATH` if it isn't found.
 
