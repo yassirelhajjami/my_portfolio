@@ -269,14 +269,14 @@ export const en = {
       "I studied English and linguistics (how language works). This helps me explain things simply — in English class and in coding class.",
     points: [
       "B.A. in English Studies (Linguistics) and a 120-hour TEFL certificate.",
-      "I teach in language centers and online, to students around the world — including Spanish-speaking learners, with lessons adapted to their first language.",
+      "I teach English at the Allal Fassi Center in Tangier, and online as a personal tutor to students around the world — including Spanish-speaking learners, with lessons adapted to their first language.",
       "I teach general English and business English.",
     ],
     roles: [
       {
-        title: "Language centers & online classes",
-        text: "Lessons in class and live online, for all levels.",
-        tags: ["In class", "Online", "All levels"],
+        title: "Allal Fassi Center & online tutoring",
+        text: "English classes at the Allal Fassi Center in Tangier, plus one-to-one online lessons as a personal tutor, for all levels.",
+        tags: ["In class", "Personal tutor", "All levels"],
       },
       {
         title: "General & business English",
@@ -369,7 +369,7 @@ export const en = {
       },
       {
         role: "English Teacher",
-        org: "Language centers & online",
+        org: "Allal Fassi Center, Tangier · Online personal tutor",
         tag: "Language",
         text: "General and business English, in class and online.",
       },
